@@ -16,3 +16,7 @@ export const PUT = async (req, { params }) => {
   const post = await Post.findByIdAndUpdate(params.id, formData);
   return NextResponse.json(post);
 };
+export const DELETE = async (req, { params }) => {
+  await Post.findByIdAndDelete({ _id: params.id });
+  return NextResponse.json({ message: "Deleted" });
+};
