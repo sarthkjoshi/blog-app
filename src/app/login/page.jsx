@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Button from "@/components/Button/Button";
+import Link from "next/link";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,6 +42,9 @@ function Login() {
           className="p-5 text-black rounded border border-pink-400 my-5"
         />
         <Button>Login</Button>
+        <Link href="/signup" className="text-center text-blue-400">
+          New User?
+        </Link>
       </form>
     </div>
   );
