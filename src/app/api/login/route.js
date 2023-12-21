@@ -19,7 +19,7 @@ export const POST = async (req) => {
     id: userdata._id,
     email: userdata.email,
   };
-  const token = jwt.sign(tokenData, "yuyuyuio@", { expiresIn: "1d" });
+  const token = jwt.sign(tokenData, "yuyuyuio@", { expiresIn: "1h" });
 
   const response = NextResponse.json({ message: "login successful" });
   response.cookies.set("token", token, { httpOnly: true });

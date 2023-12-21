@@ -3,23 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useUserContext } from "@/context/UserContext";
 
 function NavBar() {
-  const [user, setUser] = useState("");
+  const { user } = useUserContext();
   const router = useRouter();
-  useEffect(() => {
-    async function getUser() {
-      try {
-        const res = await axios.get("/api/me");
-
-        setUser(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getUser();
-  }, []);
 
   const handleLogOut = async () => {
     await axios.get("/api/logout");

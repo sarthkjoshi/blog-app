@@ -1,26 +1,29 @@
 "use client";
 import Button from "@/components/Button/Button";
+import { useUserContext } from "@/context/UserContext";
+
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 function CreatePost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const { user } = useUserContext();
   const router = useRouter();
   const handleForm = async (e) => {
     e.preventDefault();
 
     try {
-      await fetch("http://localhost:3000/api/post", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, content }),
+      await axios.post("/api/post", {
+        title,
+        content,
+        author: user._id,
       });
+
       router.push("/");
     } catch (error) {
-      console("err");
+      console.log("err");
     }
   };
   return (
